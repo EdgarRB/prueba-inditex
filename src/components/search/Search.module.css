@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25em;
+  justify-content: flex-end;
+}
+
+.counter {
+  margin-right: 0.625em;
+}
+
+.backGround {
+  font-size: 1.2em;
+  background-color: deepskyblue;
+  border-radius: 0.25em;
+  padding: 0.25em;
+}
+
+.container input {
+  padding: 0.3125em;
+  font-size: 1em;
+  height: 2em;
+  border-radius: 0.25em;
+}

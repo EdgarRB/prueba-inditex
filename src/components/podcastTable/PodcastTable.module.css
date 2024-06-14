@@ -1,0 +1,28 @@
+.podcastTable {
+  padding: 1em;
+}
+
+.podcastTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.podcastTable th,
+.podcastTable td {
+  padding: 0.625em;
+  border-top: 0.0625em solid #ddd;
+  border-bottom: 0.0625em solid #ddd;
+  text-align: left;
+}
+
+.podcastTable tr:nth-child(even) {
+  background-color: #dcdbdb76;
+}
+
+.episodeLink {
+  color: #0073e6;
+}
+
+.episodeLink:hover {
+  cursor: pointer;
+}
