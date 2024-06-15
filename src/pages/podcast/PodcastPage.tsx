@@ -26,9 +26,12 @@ const PodcastPage = () => {
 
   if (status === 'success') {
     setIsLoading && setIsLoading(false);
-    // the api call retrieves 21 results, the first is useless and don't contains any usefull information
-    if (data.results.length > 20) {
-      data.results.shift();
+
+    const episodes = [...data.results];
+
+    // the first element retrieved is useless and don't contains any usefull information
+    if (data.results.length > 1) {
+      episodes.shift();
     }
     return (
       <div className={Styles.container}>
@@ -37,12 +40,12 @@ const PodcastPage = () => {
         </div>
         <div className={Styles.rightSection}>
           <div className={Styles.episodeCount}>
-            <h2>Episodes: {data.resultCount > 20 ? 20 : data.resultCount}</h2>
+            <h2>Episodes: {episodes.length}</h2>
           </div>
           <div className={Styles.episodeList}>
             <PodcastTable
               podcastId={podcastEntry!.id.attributes['im:id']}
-              episodes={data.results}
+              episodes={episodes}
             />
           </div>
         </div>
