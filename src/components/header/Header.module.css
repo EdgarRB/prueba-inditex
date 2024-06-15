@@ -10,8 +10,8 @@
 
 .loader {
   margin-right: 1em;
-  width: 48px;
-  height: 48px;
+  width: 3em;
+  height: 3em;
   border-radius: 50%;
   position: relative;
   animation: rotate 1s linear infinite;
@@ -20,9 +20,9 @@
   content: '';
   box-sizing: border-box;
   position: absolute;
-  inset: 0px;
+  inset: 0em;
   border-radius: 50%;
-  border: 5px solid #0b0707;
+  border: 0.3125em solid #0b0707;
   animation: prixClipFix 2s linear infinite;
 }
 

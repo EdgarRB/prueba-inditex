@@ -1,0 +1,9 @@
+.episodeDetail {
+  border: 0.0625em solid #ddd;
+  padding: 2em;
+}
+
+.audioPlay {
+  width: 100%;
+  padding-top: 1em;
+}
