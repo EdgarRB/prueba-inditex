@@ -1,5 +1,5 @@
 import Styles from './List.module.css';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Search from '../../components/search/Search';
 import { usePodcastListApi } from '../../api/usePodcastListApi';
 import { Entry } from '../../model/PodcastModel';
@@ -10,21 +10,23 @@ import NoResult from '../../components/noResult/NoResult';
 const ListPage = () => {
   const loadingContext = useContext(LoadingContext);
 
-  // We expect that loadingContext is not undefined
   const { setIsLoading } = loadingContext!;
   const { status, data, error } = usePodcastListApi();
-
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  if (status === 'pending') {
-    setIsLoading && setIsLoading(true);
-  }
+  useEffect(() => {
+    if (status === 'pending') {
+      setIsLoading && setIsLoading(true);
+    } else {
+      setIsLoading && setIsLoading(false);
+    }
+  }, [status, setIsLoading]);
+
   if (status === 'error') {
     console.error(error.message);
   }
 
   if (status === 'success') {
-    setIsLoading && setIsLoading(false);
     const filteredResults = data.feed.entry.filter(
       (podcast: Entry) =>
         podcast['im:name'].label

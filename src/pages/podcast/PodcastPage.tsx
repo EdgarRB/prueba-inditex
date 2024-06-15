@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Styles from './PodcastPage.module.css';
 import { usePodcastDetailApi } from '../../api/usePodcastDetailApi';
@@ -17,16 +17,19 @@ const PodcastPage = () => {
 
   const { status, data, error } = usePodcastDetailApi(id ?? '');
 
-  if (status === 'pending') {
-    setIsLoading && setIsLoading(true);
-  }
+  useEffect(() => {
+    if (status === 'pending') {
+      setIsLoading && setIsLoading(true);
+    } else {
+      setIsLoading && setIsLoading(false);
+    }
+  }, [status, setIsLoading]);
+
   if (status === 'error') {
     console.error(error.message);
   }
 
   if (status === 'success') {
-    setIsLoading && setIsLoading(false);
-
     const episodes = [...data.results];
 
     // the first element retrieved is useless and don't contains any usefull information
