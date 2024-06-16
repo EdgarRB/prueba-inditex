@@ -6,6 +6,8 @@ import { LoadingContext } from '../../context/LoadingContext';
 import PodcastDetail from '../../components/podcastDetail/PodcastDetail';
 import { PodcastContext } from '../../context/PodcastContext';
 import PodcastTable from '../../components/podcastTable/PodcastTable';
+import { usePodcastListApi } from '../../api/usePodcastListApi';
+import { Entry } from '../../model/PodcastModel';
 
 const PodcastPage = () => {
   const { id } = useParams();
@@ -13,8 +15,8 @@ const PodcastPage = () => {
   const podcastContext = useContext(PodcastContext);
 
   const { setIsLoading } = loadingContext!;
-  const { podcastEntry } = podcastContext!;
-
+  const { podcastEntry, setPodcastEntry } = podcastContext!;
+  const { data: podcastData } = usePodcastListApi();
   const { status, data, error } = usePodcastDetailApi(id ?? '');
 
   useEffect(() => {
@@ -25,21 +27,36 @@ const PodcastPage = () => {
     }
   }, [status, setIsLoading]);
 
+  useEffect(() => {
+    // in case the user refresh the page and the context is lost
+    if (!podcastEntry && id) {
+      if (podcastData?.feed.entry) {
+        const entry = podcastData.feed.entry.find(
+          (podcast: Entry) => podcast.id.attributes['im:id'] === id
+        );
+        if (entry) {
+          setPodcastEntry(entry);
+        }
+      }
+    }
+  }, [id, podcastData, podcastEntry, setPodcastEntry]);
+
   if (status === 'error') {
     console.error(error.message);
   }
 
-  if (status === 'success') {
+  if (status === 'success' && podcastEntry) {
     const episodes = [...data.results];
 
     // the first element retrieved is useless and don't contains any usefull information
     if (data.results.length > 1) {
       episodes.shift();
     }
+
     return (
       <div className={Styles.container}>
         <div className={Styles.leftSection}>
-          <PodcastDetail detail={podcastEntry!} />
+          <PodcastDetail detail={podcastEntry} />
         </div>
         <div className={Styles.rightSection}>
           <div className={Styles.episodeCount}>
@@ -47,7 +64,7 @@ const PodcastPage = () => {
           </div>
           <div className={Styles.episodeList}>
             <PodcastTable
-              podcastId={podcastEntry!.id.attributes['im:id']}
+              podcastId={podcastEntry.id.attributes['im:id']}
               episodes={episodes}
             />
           </div>
