@@ -59,9 +59,7 @@ const EpisodePage = () => {
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.leftSection}>
-        {podcastEntry && <PodcastDetail detail={podcastEntry} />}
-      </div>
+      {podcastEntry && <PodcastDetail detail={podcastEntry} />}
       <div className={Styles.rightSection}>
         {episodeResult && <EpisodeDetail detail={episodeResult} />}
       </div>

@@ -21,35 +21,37 @@ const PodcastDetail = ({ detail }: PodcastDetailProps) => {
   };
 
   return (
-    <div className={Styles.podcastDetail}>
-      <div className={Styles.podcastCard}>
-        <div className={Styles.podcastImage}>
-          <img
+    <div className={Styles.leftSection}>
+      <div className={Styles.podcastDetail}>
+        <div className={Styles.podcastCard}>
+          <div className={Styles.podcastImage}>
+            <img
+              className={Styles.pointer}
+              src={detail['im:image'][2].label}
+              alt={detail['im:name'].label}
+              onClick={handleRedirection}
+              onKeyDown={handleKeyPress}
+            />
+          </div>
+          <hr />
+          <h2
             className={Styles.pointer}
-            src={detail['im:image'][2].label}
-            alt={detail['im:name'].label}
             onClick={handleRedirection}
             onKeyDown={handleKeyPress}
-          />
+          >
+            {detail['im:name'].label}
+          </h2>
+          <p
+            className={Styles.pointer}
+            onClick={handleRedirection}
+            onKeyDown={handleKeyPress}
+          >
+            by {detail['im:artist'].label}
+          </p>
+          <hr />
+          <h2>Description: </h2>
+          <p>{detail.summary.label}</p>
         </div>
-        <hr />
-        <h2
-          className={Styles.pointer}
-          onClick={handleRedirection}
-          onKeyDown={handleKeyPress}
-        >
-          {detail['im:name'].label}
-        </h2>
-        <p
-          className={Styles.pointer}
-          onClick={handleRedirection}
-          onKeyDown={handleKeyPress}
-        >
-          by {detail['im:artist'].label}
-        </p>
-        <hr />
-        <h2>Description: </h2>
-        <p>{detail.summary.label}</p>
       </div>
     </div>
   );

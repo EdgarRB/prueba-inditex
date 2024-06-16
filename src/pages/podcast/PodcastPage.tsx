@@ -55,9 +55,8 @@ const PodcastPage = () => {
 
     return (
       <div className={Styles.container}>
-        <div className={Styles.leftSection}>
-          <PodcastDetail detail={podcastEntry} />
-        </div>
+        <PodcastDetail detail={podcastEntry} />
+
         <div className={Styles.rightSection}>
           <div className={Styles.episodeCount}>
             <h2>Episodes: {episodes.length}</h2>
