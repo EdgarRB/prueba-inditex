@@ -25,6 +25,7 @@ const Search = ({ setSearchQuery, numOfElements }: SearchTextFieldProps) => {
       <input
         type="search"
         id="search-podcast"
+        data-testid="search-podcast"
         value={tempValue}
         placeholder="Filter podcasts..."
         onChange={(e) => setTempValue(e.target.value)}

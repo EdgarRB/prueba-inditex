@@ -3,29 +3,12 @@ import { Result } from '../../model/PodcastDetailModel';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { EpisodeContext } from '../../context/EpisodeContext';
+import { formatDate, formatDuration } from '../../utils/DateFormatters';
 
 interface PodcastTableProps {
   podcastId: string;
   episodes: Result[];
 }
-
-const formatDuration = (millis: number) => {
-  if (millis) {
-    const seconds = Math.floor((millis / 1000) % 60);
-    const minutes = Math.floor((millis / (1000 * 60)) % 60);
-    const hours = Math.floor((millis / (1000 * 60 * 60)) % 24);
-
-    const hoursString = hours > 1 ? `${hours}h` : '';
-    const minutesString = minutes > 1 ? `${minutes}m` : '';
-
-    return `${hoursString} ${minutesString} ${seconds}s`;
-  }
-  return 'no information';
-};
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString();
-};
 
 const PodcastTable = ({ podcastId, episodes }: PodcastTableProps) => {
   const episodeContext = useContext(EpisodeContext);
