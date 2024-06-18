@@ -41,7 +41,7 @@ describe('usePodcastDetailApi', () => {
       expect(FetchFunction).toHaveBeenCalledWith(
         'https://itunes.apple.com/lookup?id=12345&media=podcast&entity=podcastEpisode'
       );
-      expect(localStorage.getItem('podcastDetail')).toBe(
+      expect(localStorage.getItem('podcastDetail12345')).toBe(
         JSON.stringify(mockPodcastDetailData)
       );
       expect(localStorage.getItem('podcastDetailExpiration')).toBeTruthy();
@@ -103,7 +103,7 @@ describe('usePodcastDetailApi', () => {
       expect(FetchFunction).toHaveBeenCalledWith(
         'https://itunes.apple.com/lookup?id=12345&media=podcast&entity=podcastEpisode'
       );
-      expect(localStorage.getItem('podcastDetail')).toBe(
+      expect(localStorage.getItem('podcastDetail12345')).toBe(
         JSON.stringify(mockPodcastDetailData)
       );
       expect(localStorage.getItem('podcastDetailExpiration')).toBeTruthy();
