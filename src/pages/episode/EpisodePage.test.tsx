@@ -66,7 +66,7 @@ describe('EpisodePage', () => {
       const episodeDetail = screen.getByText('Episode 1');
       expect(episodeDetail).toBeInTheDocument();
 
-      const audioElement = screen.getByTestId('audio') as HTMLAudioElement;
+      const audioElement = screen.getByTestId('audio');
       expect(audioElement).toBeInTheDocument();
     });
   });
