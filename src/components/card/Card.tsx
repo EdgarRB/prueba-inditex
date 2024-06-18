@@ -31,7 +31,7 @@ const Card = ({ data }: ICardProps) => {
       onClick={handleRedirection}
       onKeyDown={handleKeyPress}
     >
-      <img src={data['im:image'][0].label} alt="podcast logo" />
+      <img src={data['im:image'][2].label} alt="podcast logo" />
       <div className={Styles.info}>
         <h2>{data['im:name'].label}</h2>
         <p>Author: {data['im:artist'].label}</p>

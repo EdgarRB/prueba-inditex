@@ -14,7 +14,9 @@ const Header = () => {
           <Link to={'/'}>Podcaster</Link>
         </h2>
       </div>
-      {isLoading && <span className={Styles.loader}></span>}
+      {isLoading && (
+        <span className={Styles.loader} data-testid="loader"></span>
+      )}
     </div>
   );
 };

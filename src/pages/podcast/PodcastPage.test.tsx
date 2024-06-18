@@ -7,6 +7,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { usePodcastDetailApi } from '../../api/usePodcastDetailApi';
 import { usePodcastListApi } from '../../api/usePodcastListApi';
 import {
+  mockPodcast,
   mockPodcastDetailData,
   mockPodcastListData,
 } from '../../utils/MockData';
@@ -16,46 +17,7 @@ jest.mock('../../api/usePodcastDetailApi');
 jest.mock('../../api/usePodcastListApi');
 
 const mockPodcastContext = {
-  podcastEntry: {
-    'im:name': { label: 'Podcast 1' },
-    'im:image': [
-      { label: 'Image 1', attributes: { height: '100' } },
-      { label: 'Image 2', attributes: { height: '100' } },
-      { label: 'Image 3', attributes: { height: '100' } },
-    ],
-    summary: { label: 'Summary 1' },
-    'im:price': {
-      label: '$0.00',
-      attributes: { amount: '0', currency: 'USD' },
-    },
-    'im:contentType': { attributes: { term: 'Podcast', label: 'Podcast' } },
-    rights: { label: 'Rights 1' },
-    title: { label: 'Title 1' },
-    link: {
-      attributes: {
-        rel: 'alternate',
-        type: 'text/html',
-        href: 'http://example.com/1',
-      },
-    },
-    id: { label: 'ID 1', attributes: { 'im:id': '1' } },
-    'im:artist': {
-      label: 'Artist 1',
-      attributes: { href: 'http://example.com/artist1' },
-    },
-    category: {
-      attributes: {
-        'im:id': '1301',
-        term: 'Technology',
-        scheme: 'http://example.com/scheme',
-        label: 'Technology',
-      },
-    },
-    'im:releaseDate': {
-      label: '2021-01-01',
-      attributes: { label: 'January 1, 2021' },
-    },
-  },
+  podcastEntry: mockPodcast,
   setPodcastEntry: jest.fn(),
 };
 
