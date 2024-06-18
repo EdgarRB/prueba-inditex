@@ -12,7 +12,7 @@ export const usePodcastDetailApi = (id: string) => {
   return useQuery({
     queryKey: ['podcastDetail', id],
     queryFn: async (): Promise<PodcastDetail> => {
-      const cachedData = localStorage.getItem(key);
+      const cachedData = localStorage.getItem(`${key}${id}`);
       const cachedTimestamp = localStorage.getItem(timeKey);
 
       if (cachedData && cachedTimestamp) {
@@ -23,7 +23,7 @@ export const usePodcastDetailApi = (id: string) => {
       }
 
       const data = await FetchFunction(url);
-      localStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(`${key}${id}`, JSON.stringify(data));
       localStorage.setItem(timeKey, Date.now().toString());
 
       return data;
