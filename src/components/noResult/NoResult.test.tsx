@@ -5,7 +5,7 @@ describe('NoResult component', () => {
   it('renders with correct styles', () => {
     const { getByText, getByTestId } = render(<NoResult />);
 
-    const containerElement = getByTestId('no-result-container');
+    const containerElement = getByTestId('noResult');
     expect(containerElement).toBeInTheDocument();
 
     const textElement = getByText(
