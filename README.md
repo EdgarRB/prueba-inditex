@@ -64,7 +64,7 @@ sigue los siguientes pasos para poder ejecutar la aplicación
    
 ![imagen](https://github.com/EdgarRB/prueba-inditex/assets/52667125/3719123d-0c26-4851-bb07-cb15cf573cea)
 
-4. Instala las dependencias:
+3. Instala las dependencias:
 
   ```
    npm install
