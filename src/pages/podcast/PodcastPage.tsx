@@ -8,6 +8,7 @@ import { PodcastContext } from '../../context/PodcastContext';
 import PodcastTable from '../../components/podcastTable/PodcastTable';
 import { usePodcastListApi } from '../../api/usePodcastListApi';
 import { Entry } from '../../model/PodcastModel';
+import HandleStatus from '../../utils/HandleStatus';
 
 const PodcastPage = () => {
   const { id } = useParams();
@@ -20,11 +21,7 @@ const PodcastPage = () => {
   const { status, data, error } = usePodcastDetailApi(id ?? '');
 
   useEffect(() => {
-    if (status === 'pending') {
-      setIsLoading && setIsLoading(true);
-    } else {
-      setIsLoading && setIsLoading(false);
-    }
+    HandleStatus(status, setIsLoading);
   }, [status, setIsLoading]);
 
   useEffect(() => {

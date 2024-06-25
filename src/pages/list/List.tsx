@@ -6,6 +6,7 @@ import { Entry } from '../../model/PodcastModel';
 import { LoadingContext } from '../../context/LoadingContext';
 import Card from '../../components/card/Card';
 import NoResult from '../../components/noResult/NoResult';
+import HandleStatus from '../../utils/HandleStatus';
 
 const ListPage = () => {
   const loadingContext = useContext(LoadingContext);
@@ -15,11 +16,7 @@ const ListPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    if (status === 'pending') {
-      setIsLoading && setIsLoading(true);
-    } else {
-      setIsLoading && setIsLoading(false);
-    }
+    HandleStatus(status, setIsLoading);
   }, [status, setIsLoading]);
 
   if (status === 'error') {

@@ -20,6 +20,9 @@ export const usePodcastListApi = () => {
         const age = Date.now() - parseInt(cachedTimestamp, 10);
         if (age < time) {
           return JSON.parse(cachedData);
+        } else {
+          localStorage.removeItem(key);
+          localStorage.removeItem(timeKey);
         }
       }
 
