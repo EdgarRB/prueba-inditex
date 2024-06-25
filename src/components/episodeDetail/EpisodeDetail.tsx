@@ -1,4 +1,5 @@
 import { Result } from '../../model/PodcastDetailModel';
+import FormatDescription from '../../utils/DescriptionFormatter';
 import Styles from './EpisodeDetail.module.css';
 
 interface EpisodeDetailProps {
@@ -6,21 +7,6 @@ interface EpisodeDetailProps {
 }
 
 const EpisodeDetail = ({ detail }: EpisodeDetailProps) => {
-  const formatDescription = (description: string) => {
-    const urlRegex =
-      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|]|(\b[\w.-]*\.(com|net|fm)\b[\w/-]*))/gi;
-
-    const descriptionAdapted = description.replace(urlRegex, (url) => {
-      const href = url.startsWith('http') ? url : `http://${url}`;
-      return `<a href="${href}" target="_blank" class="text-blue-700">${url}</a>`;
-    });
-
-    return descriptionAdapted
-      .split(/\\n\\n|\\n|\n/)
-      .map((paragraph) => `<p>${paragraph}</p>`)
-      .join('');
-  };
-
   return (
     <div className={Styles.episodeDetail}>
       <h2>{detail.trackName}</h2>
@@ -28,7 +14,7 @@ const EpisodeDetail = ({ detail }: EpisodeDetailProps) => {
         data-testid="description"
         dangerouslySetInnerHTML={{
           __html: detail.description
-            ? formatDescription(detail.description)
+            ? FormatDescription(detail.description)
             : '',
         }}
       ></p>

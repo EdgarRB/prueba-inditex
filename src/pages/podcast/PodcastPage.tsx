@@ -56,7 +56,7 @@ const PodcastPage = () => {
 
         <div className={Styles.rightSection}>
           <div className={Styles.episodeCount}>
-            <h2>Episodes: {episodes.length}</h2>
+            <h2>Episodes: {data.results[0].trackCount}</h2>
           </div>
           <div className={Styles.episodeList}>
             <PodcastTable
